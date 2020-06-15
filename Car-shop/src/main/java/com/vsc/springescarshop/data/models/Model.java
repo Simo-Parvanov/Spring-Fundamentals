@@ -19,6 +19,9 @@ public class Model extends BaseEntity {
     private VehicleCategory category;
     private Brand brand;
 
+    public Model(String m2, VehicleCategory car, int i, Integer o, String s) {
+    }
+
     public Model() {
     }
 
