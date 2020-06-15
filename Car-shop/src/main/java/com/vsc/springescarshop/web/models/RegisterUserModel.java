@@ -1,5 +1,6 @@
 package com.vsc.springescarshop.web.models;
 
+import javax.validation.constraints.NotEmpty;
 
 public class RegisterUserModel {
     private String username;
@@ -7,12 +8,12 @@ public class RegisterUserModel {
     private String lastName;
     private String password;
     private String confirmPassword;
-    private String imageUrl;
     private String role;
 
     public RegisterUserModel() {
     }
 
+    @NotEmpty(message = "Please enter Username!")
     public String getUsername() {
         return username;
     }
@@ -21,6 +22,7 @@ public class RegisterUserModel {
         this.username = username;
     }
 
+    @NotEmpty(message = "Please enter First Name!")
     public String getFirstName() {
         return firstName;
     }
@@ -29,6 +31,7 @@ public class RegisterUserModel {
         this.firstName = firstName;
     }
 
+    @NotEmpty(message = "Please enter Last Name!")
     public String getLastName() {
         return lastName;
     }
@@ -37,6 +40,7 @@ public class RegisterUserModel {
         this.lastName = lastName;
     }
 
+    @NotEmpty@NotEmpty(message = "Please enter Password!")
     public String getPassword() {
         return password;
     }
@@ -44,21 +48,13 @@ public class RegisterUserModel {
     public void setPassword(String password) {
         this.password = password;
     }
-
+    @NotEmpty@NotEmpty(message = "Please repeat Password! ")
     public String getConfirmPassword() {
         return confirmPassword;
     }
 
     public void setConfirmPassword(String confirmPassword) {
         this.confirmPassword = confirmPassword;
-    }
-
-    public String getImageUrl() {
-        return imageUrl;
-    }
-
-    public void setImageUrl(String imageUrl) {
-        this.imageUrl = imageUrl;
     }
 
     public String getRole() {

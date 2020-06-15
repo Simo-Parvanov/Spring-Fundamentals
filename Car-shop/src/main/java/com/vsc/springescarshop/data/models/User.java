@@ -17,16 +17,14 @@ public class User extends BaseEntity {
     private String lastName;
     private String password;
     private boolean active;
-    private Set<Role> role;
-    private String imageUrl;
+    private Set<Role> roles;
     private LocalDateTime created;
-    private LocalDateTime modified;
 
     public User() {
     }
 
     @Column(name = "username", unique = true)
-    @Length(min = 1, max = 60)
+    @Length(min = 3, max = 50)
     @NotNull
     public String getUsername() {
         return username;
@@ -37,7 +35,7 @@ public class User extends BaseEntity {
     }
 
     @Column(name = "first_name")
-    @Length(min = 1, max = 60)
+    @Length(min = 2, max = 20)
     public String getFirstName() {
         return firstName;
     }
@@ -47,7 +45,7 @@ public class User extends BaseEntity {
     }
 
     @Column(name = "last_name")
-    @Length(min = 1, max = 60)
+    @Length(min = 2, max = 20)
     public String getLastName() {
         return lastName;
     }
@@ -70,21 +68,13 @@ public class User extends BaseEntity {
     @ElementCollection(fetch = FetchType.EAGER)
     @Enumerated(EnumType.STRING)
     public Set<Role> getRole() {
-        return role;
+        return roles;
     }
 
-    public void setRole(Set<Role> role) {
-        this.role = role;
+    public void setRole(Set<Role> roles) {
+        this.roles = roles;
     }
 
-    @Column(name = "image_url")
-    public String getImageUrl() {
-        return imageUrl;
-    }
-
-    public void setImageUrl(String imageUrl) {
-        this.imageUrl = imageUrl;
-    }
     @Column(name = "created")
     public LocalDateTime getCreated() {
         return created;
@@ -92,14 +82,6 @@ public class User extends BaseEntity {
 
     public void setCreated(LocalDateTime created) {
         this.created = created;
-    }
-    @Column(name = "modified")
-    public LocalDateTime getModified() {
-        return modified;
-    }
-
-    public void setModified(LocalDateTime modified) {
-        this.modified = modified;
     }
 
     @Column(name = "password")

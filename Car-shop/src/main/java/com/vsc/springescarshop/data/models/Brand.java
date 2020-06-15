@@ -11,8 +11,6 @@ import java.time.LocalDateTime;
 @Table(name = "brands")
 public class Brand extends BaseEntity {
     private String name;
-    private LocalDateTime created;
-    private LocalDateTime modified;
 
     public Brand() {
     }
@@ -26,21 +24,5 @@ public class Brand extends BaseEntity {
     public void setName(String name) {
         this.name = name;
     }
-
-    @Column(name = "created")
-    public LocalDateTime getCreated() {
-        return created;
-    }
-
-    public void setCreated(LocalDateTime created) {
-        this.created = created;
-    }
-    @Column(name = "modified")
-    public LocalDateTime getModified() {
-        return modified;
-    }
-
-    public void setModified(LocalDateTime modified) {
-        this.modified = modified;
-    }
 }
+
