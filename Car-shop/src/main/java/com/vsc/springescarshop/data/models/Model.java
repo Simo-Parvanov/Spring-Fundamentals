@@ -5,24 +5,30 @@ import org.hibernate.validator.constraints.Length;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
-import java.time.LocalDateTime;
+import java.util.Date;
 
 @Entity
 @Table(name = "models")
-public class Model extends BaseEntity {
+public class Model extends BaseEntity implements Comparable<Model> {
     private String name;
     private String imageUrl;
-    private int startYear;
-    private int endYear;
-    private LocalDateTime created;
-    private LocalDateTime modified;
+    private Integer startYear;
+    private Integer endYear;
+    private Date created = new Date();
+    private Date modified = new Date();
     private VehicleCategory category;
     private Brand brand;
 
-    public Model(String m2, VehicleCategory car, int i, Integer o, String s) {
+    public Model() {
     }
 
-    public Model() {
+    public Model(String m2, VehicleCategory car, Integer i, Integer o, String s) {
+        this.name = m2;
+        this.category = car;
+        this.startYear = i;
+        this.endYear = o;
+        this.imageUrl = s;
+
     }
 
     @Column(name = "name", nullable = false)
@@ -45,38 +51,38 @@ public class Model extends BaseEntity {
     }
 
     @Column(name = "start_year", nullable = false)
-    public int getStartYear() {
+    public Integer getStartYear() {
         return startYear;
     }
 
-    public void setStartYear(int startYear) {
+    public void setStartYear(Integer startYear) {
         this.startYear = startYear;
     }
 
-    @Column(name = "ebd_year")
-    public int getEndYear() {
+    @Column(name = "end_year")
+    public Integer getEndYear() {
         return endYear;
     }
 
-    public void setEndYear(int endYear) {
+    public void setEndYear(Integer endYear) {
         this.endYear = endYear;
     }
 
     @Column(name = "created")
-    public LocalDateTime getCreated() {
+    public Date getCreated() {
         return created;
     }
 
-    public void setCreated(LocalDateTime created) {
+    public void setCreated(Date created) {
         this.created = created;
     }
 
     @Column(name = "modified")
-    public LocalDateTime getModified() {
+    public Date getModified() {
         return modified;
     }
 
-    public void setModified(LocalDateTime modified) {
+    public void setModified(Date modified) {
         this.modified = modified;
     }
 
@@ -98,5 +104,10 @@ public class Model extends BaseEntity {
 
     public void setCategory(VehicleCategory category) {
         this.category = category;
+    }
+
+    @Override
+    public int compareTo(Model o) {
+        return name.compareToIgnoreCase(o.getName());
     }
 }

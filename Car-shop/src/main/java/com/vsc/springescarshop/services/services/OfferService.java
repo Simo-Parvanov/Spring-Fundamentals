@@ -8,4 +8,6 @@ public interface OfferService {
     List<OfferServiceModel> allOffers();
 
 
+    OfferServiceModel createOffer(OfferServiceModel offerModel);
 }
+

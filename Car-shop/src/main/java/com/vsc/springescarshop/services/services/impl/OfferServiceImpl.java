@@ -26,4 +26,10 @@ public class OfferServiceImpl implements OfferService {
                 .map(offer -> mapper.map(offer, OfferServiceModel.class))
                 .collect(Collectors.toList());
     }
+
+    @Override
+    public OfferServiceModel createOffer(OfferServiceModel offerModel) {
+
+        return null;
+    }
 }

@@ -13,13 +13,15 @@ import java.util.List;
 public class BrandServiceImpl implements BrandService {
     private final BrandRepository brandRepository;
 
+
     public BrandServiceImpl(BrandRepository brandRepository) {
         this.brandRepository = brandRepository;
     }
 
     @Override
     public Collection<Brand> getBrands() {
-        return null;
+
+        return brandRepository.findAll();
     }
 
     @Override
@@ -28,8 +30,8 @@ public class BrandServiceImpl implements BrandService {
     }
 
     @Override
-    public Brand createBrand(Brand post) {
-        return null;
+    public Brand createBrand(Brand brand) {
+        return brandRepository.save(brand);
     }
 
     @Override

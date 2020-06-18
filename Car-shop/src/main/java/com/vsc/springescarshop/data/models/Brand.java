@@ -3,7 +3,7 @@ import com.vsc.springescarshop.data.models.base.BaseEntity;
 import org.hibernate.validator.constraints.Length;
 
 import javax.persistence.*;
-import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 
@@ -40,10 +40,12 @@ public class Brand extends BaseEntity {
 
     public static Brand create(String name, Set<Model> models) {
         Brand brand = new Brand(name);
+        List<Model> m = new ArrayList<>();
         models.stream().sorted().forEach(model -> {
             model.setBrand(brand);
-            brand.getModels().add(model);
+            m.add(model);
         });
+        brand.setModels(m);
         return brand;
     }
 

@@ -6,6 +6,7 @@ import com.vsc.springescarshop.services.services.UserService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
+import org.springframework.validation.Errors;
 import org.springframework.validation.ObjectError;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -28,22 +29,19 @@ public class AuthController {
 
 
     @GetMapping("/register")
-    public ModelAndView getRegister(@Valid @ModelAttribute("user") UserRegisterServiceModel user,
-                                    BindingResult binding, ModelAndView modelAndView, RedirectAttributes redirectAttributes,
-                                    HttpSession session) {
-        modelAndView.addObject("user", user);
-        modelAndView.setViewName("auth-register");
-        return modelAndView;
+    public String getRegister(@Valid @ModelAttribute("user") UserRegisterServiceModel user,
+                              BindingResult binding) {
+        return "auth-register";
     }
 
     @PostMapping("/register")
-    public String createUser(@Valid @ModelAttribute("user") UserRegisterServiceModel user, BindingResult binding,
-                             RedirectAttributes redirectAttributes, HttpSession session) {
-        session.removeAttribute("errorMassage");
-
+    public String createUser(@Valid @ModelAttribute("user") UserRegisterServiceModel user,
+                             BindingResult binding,
+                             RedirectAttributes redirectAttributes,
+                             HttpSession session) {
         if (binding.hasErrors()) {
             redirectAttributes.addFlashAttribute("user", user);
-            redirectAttributes.addFlashAttribute("org.springframework.validation.BindingResult.user", binding);
+//            redirectAttributes.addFlashAttribute("org.springframework.validation.BindingResult.user", binding);
             return "redirect:/auth/register";
         }
         try {
@@ -52,23 +50,30 @@ public class AuthController {
         } catch (Exception ex) {
             session.setAttribute("errorMassage", ex.getMessage());
             redirectAttributes.addFlashAttribute("user", user);
+            redirectAttributes.addFlashAttribute("errors", ex.getMessage());
             return "redirect:/auth/register";
         }
     }
 
     @GetMapping("/login")
-    public String getLogin(@Valid @ModelAttribute("user") LoginServiceModel user,
-                           BindingResult binding, ModelAndView modelAndView, RedirectAttributes redirectAttributes,
-                           HttpSession session) {
-        return "/auth-login";
+    public String getLogin(Model model) {
+        if (model.getAttribute("username") == null) {
+            model.addAttribute("username", "");
+        }
+        if (model.getAttribute("password") == null) {
+            model.addAttribute("password", "");
+        }
+        return "auth-login";
     }
 
     @PostMapping("/login")
     public String postLogin(@Valid @ModelAttribute("user") LoginServiceModel user,
-                            BindingResult binding, ModelAndView modelAndView, RedirectAttributes redirectAttributes,
+                            BindingResult binding,
+                            ModelAndView modelAndView,
+                            RedirectAttributes redirectAttributes,
                             HttpSession session) {
         if (binding.hasErrors()) {
-            redirectAttributes.addFlashAttribute("user", user);
+            redirectAttributes.addFlashAttribute("username", user.getUsername());
             return "redirect:/auth/login";
         }
         try {
@@ -79,8 +84,8 @@ public class AuthController {
             session.setAttribute("role", users.getRole());
             return "/offers";
         } catch (Exception ex) {
-            redirectAttributes.addFlashAttribute("user", user);
-            session.setAttribute("errorMassage", ex.getMessage());
+            redirectAttributes.addFlashAttribute("username", user.getUsername());
+            redirectAttributes.addFlashAttribute("errors", ex.getMessage());
             return "redirect:/auth/login";
         }
     }
