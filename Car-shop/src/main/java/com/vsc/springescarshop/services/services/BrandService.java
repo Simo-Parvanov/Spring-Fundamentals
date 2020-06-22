@@ -5,6 +5,7 @@ import com.vsc.springescarshop.data.models.Model;
 
 import java.util.Collection;
 import java.util.List;
+import java.util.Optional;
 
 public interface BrandService {
     Collection<Brand> getBrands();

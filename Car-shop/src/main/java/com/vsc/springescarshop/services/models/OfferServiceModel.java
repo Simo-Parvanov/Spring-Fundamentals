@@ -9,6 +9,8 @@ import org.hibernate.validator.constraints.Length;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Positive;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 public class OfferServiceModel {
     private String imageUrl;
@@ -20,6 +22,8 @@ public class OfferServiceModel {
     private EngineType engine;
     private TransmissionType transmission;
     private VehicleCategory vehicleCategory;
+    private LocalDate created;
+    private Long id;
 
     public OfferServiceModel() {
     }
@@ -106,5 +110,21 @@ public class OfferServiceModel {
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    public LocalDate getCreated() {
+        return created;
+    }
+
+    public void setCreated(LocalDate created) {
+        this.created = created;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 }

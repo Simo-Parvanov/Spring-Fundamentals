@@ -4,7 +4,9 @@ import com.vsc.springescarshop.data.models.base.BaseEntity;
 
 import javax.persistence.*;
 import javax.validation.constraints.Positive;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.util.Date;
 
 
 @Entity
@@ -18,8 +20,8 @@ public class Offer extends BaseEntity {
     private Double price;
     private TransmissionType transmission;
     private int year;
-    private LocalDateTime created;
-    private LocalDateTime modified;
+    private LocalDate created;
+    private LocalDate modified;
     private Model model;
     private User seller;
 
@@ -91,19 +93,19 @@ public class Offer extends BaseEntity {
         this.year = year;
     }
     @Column(name = "created")
-    public LocalDateTime getCreated() {
+    public LocalDate getCreated() {
         return created;
     }
 
-    public void setCreated(LocalDateTime created) {
+    public void setCreated(LocalDate created) {
         this.created = created;
     }
     @Column(name = "modified")
-    public LocalDateTime getModified() {
+    public LocalDate getModified() {
         return modified;
     }
 
-    public void setModified(LocalDateTime modified) {
+    public void setModified(LocalDate modified) {
         this.modified = modified;
     }
 

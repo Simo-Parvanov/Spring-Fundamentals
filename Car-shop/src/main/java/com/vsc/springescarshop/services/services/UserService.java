@@ -12,4 +12,6 @@ public interface UserService {
     LoginServiceModel loginUser(LoginServiceModel loginServiceModel);
 
     boolean equalPassword(String password, String confirmPassword);
+
+    User getUserByUsername(String username);
 }

@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.Collection;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class BrandServiceImpl implements BrandService {
@@ -56,6 +57,7 @@ public class BrandServiceImpl implements BrandService {
 
     @Override
     public Model getModelById(String id) {
-        return null;
+      return brandRepository.findByModelById(Long.parseLong(id));
+
     }
 }

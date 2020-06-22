@@ -12,13 +12,15 @@
             <div class="form-group col-md-6 mb-3">
                 <label class="text-white font-weight-bold" for="category">Vehicle Category</label>
                 <select th:field="*{vehicleCategory}" id="category" class="form-control">
+                    <option value="">- Select category type -</option>
                     <option th:each="category : ${T(com.vsc.springescarshop.data.models.VehicleCategory).values()}"
                             th:value="${category}"
-                            th:text="${category}" th:selected="${offer.vehicleCategory == category}">
+                            th:text="${#strings.capitalize(#strings.toLowerCase(category))}" th:selected="${offer.vehicleCategory == category}">
                         Vehicle Category
                     </option>
                 </select>
-                <p class="errors alert alert-danger">
+                <p th:if="${#fields.hasErrors('vehicleCategory')}" th:erorrs="*{vehicleCategory}"
+                   class="errors alert alert-danger">
                     Vehicle category is required.
                 </p>
             </div>
@@ -35,7 +37,8 @@
                         </option>
                     </optgroup>
                 </select>
-                <p th:if="${#fields.hasErrors('model')}" th:errors="*{model}" class="errors alert alert-danger">
+                <p th:if="${#fields.hasErrors('model')}" th:errors="*{model}"
+                   class="errors alert alert-danger">
                     Vehicle model is required.
                 </p>
             </div>
@@ -47,11 +50,12 @@
                     <option value="">- Select engine type -</option>
                     <option th:each="eng : ${T(com.vsc.springescarshop.data.models.EngineType).values()}"
                             th:value="${eng}"
-                            th:text="${eng}" th:selected="${offer.engine == eng}">
+                            th:text="${#strings.capitalize(#strings.toLowerCase(eng))}" th:selected="${offer.engine == eng}">
                         Engine type
                     </option>
                 </select>
-                <p class="errors alert alert-danger">
+                <p th:if="${#fields.hasErrors('engine')}" th:erorrs="*{engine}"
+                   class="errors alert alert-danger">
                     Engine type is required.
                 </p>
             </div>
@@ -61,10 +65,11 @@
                     <option value="">- Select transmission type -</option>
                     <option th:each="trans : ${T(com.vsc.springescarshop.data.models.TransmissionType).values()}"
                             th:value="${trans}"
-                            th:text="${trans}" th:selected="${offer.transmission == trans}"> Transmission type
+                            th:text="${#strings.capitalize(#strings.toLowerCase(trans))}" th:selected="${offer.transmission == trans}"> Transmission type
                     </option>
                 </select>
-                <p class="errors alert alert-danger">
+                <p th:if="${#fields.hasErrors('transmission')}" th:erorrs="*{transmission}"
+                   class="errors alert alert-danger">
                     Transmission type is required.
                 </p>
             </div>
@@ -74,7 +79,8 @@
                 <label for="year" class="text-white font-weight-bold">Year</label>
                 <input th:field="*{year}" id="year" type="number" min="1900" max="2020" step="1" class="form-control"
                        placeholder="Manufacturing year"/>
-                <p th:if="${#fields.hasErrors('year')}" th:erorrs="*{year}" class="errors alert alert-danger">
+                <p th:if="${#fields.hasErrors('year')}" th:erorrs="*{year}"
+                   class="errors alert alert-danger">
                     Manufacturing year is required.
                 </p>
             </div>
@@ -83,7 +89,8 @@
                 <input th:field="*{mileage}" id="mileage" type="number" min="0" max="900000" step="1000"
                        class="form-control"
                        placeholder="Mileage in kilometers"/>
-                <p th:if="${#fields.hasErrors('mileage')}" th:errors="*{mileage}" class="errors alert alert-danger">
+                <p th:if="${#fields.hasErrors('mileage')}" th:errors="*{mileage}"
+                   class="errors alert alert-danger">
                     Mileage in kilometers is required.
                 </p>
             </div>
@@ -101,7 +108,8 @@
             <label class="text-white font-weight-bold" for="description">Description</label>
             <textarea th:field="*{description}" id="description" type="textarea" class="form-control" rows="3"
                       placeholder="Description"></textarea>
-            <p th:if="${#fields.hasErrors('description')}" th:errors="*{description}" class="errors alert alert-danger">
+            <p th:if="${#fields.hasErrors('description')}" th:errors="*{description}"
+               class="errors alert alert-danger">
                 Description is required.
             </p>
         </div>
@@ -109,11 +117,16 @@
             <label class="text-white font-weight-bold" for="imageUrl">Image URL</label>
             <input th:field="*{imageUrl}" id="imageUrl" type="url" class="form-control"
                    placeholder="Put vehicle image URL here"/>
-            <p th:if="${#fields.hasErrors('imageUrl')}" th:errors="*{imageUrl}" class="errors alert alert-danger">
+            <p th:if="${#fields.hasErrors('imageUrl')}" th:errors="*{imageUrl}"
+               class="errors alert alert-danger">
                 Vehicle image URL is required.
             </p>
         </div>
-
+        <div>
+            <p th:if="${errors}" class="errors alert alert-danger" th:text="${errors}">
+                Invalid username or password.
+            </p>
+        </div>
         <div class="row">
             <div class="col col-md-4">
                 <div class="button-holder d-flex">

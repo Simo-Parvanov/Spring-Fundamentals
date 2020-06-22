@@ -29,8 +29,10 @@ public class AuthController {
 
 
     @GetMapping("/register")
-    public String getRegister(@Valid @ModelAttribute("user") UserRegisterServiceModel user,
-                              BindingResult binding) {
+    public String getRegister(Model model) {
+        if (model.getAttribute("user") == null){
+            model.addAttribute("user", new UserRegisterServiceModel());
+        }
         return "auth-register";
     }
 
@@ -41,7 +43,7 @@ public class AuthController {
                              HttpSession session) {
         if (binding.hasErrors()) {
             redirectAttributes.addFlashAttribute("user", user);
-//            redirectAttributes.addFlashAttribute("org.springframework.validation.BindingResult.user", binding);
+            redirectAttributes.addFlashAttribute("org.springframework.validation.BindingResult.user", binding);
             return "redirect:/auth/register";
         }
         try {
