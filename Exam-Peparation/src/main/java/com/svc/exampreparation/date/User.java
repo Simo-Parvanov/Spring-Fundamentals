@@ -1,4 +1,4 @@
-package com.svc.exampreparation.Date;
+package com.svc.exampreparation.date;
 
 import org.hibernate.validator.constraints.Length;
 
@@ -8,6 +8,7 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.Positive;
+import java.math.BigDecimal;
 import java.util.Set;
 
 @Entity
@@ -16,13 +17,12 @@ public class User extends BaseEntity{
     private String username;
     private String password;
     private String email;
-    private Integer budget;
-    private Set<Item> itemSet;
+    private BigDecimal budget;
 
     public User() {
     }
 
-    @Column(name = "username", unique = true)
+    @Column(name = "username", unique = true, nullable = false)
     @Length(min = 2)
     public String getUsername() {
         return username;
@@ -42,7 +42,7 @@ public class User extends BaseEntity{
         this.password = password;
     }
 
-    @Column(name = "email", unique = true)
+    @Column(name = "email", unique = true, nullable = false)
     @Email
     public String getEmail() {
         return email;
@@ -52,22 +52,13 @@ public class User extends BaseEntity{
         this.email = email;
     }
 
-    @Column(name = "ebudget")
-    @Positive
-    public Integer getBudget() {
+    @Column(name = "budget")
+    public BigDecimal getBudget() {
         return budget;
     }
 
-    public void setBudget(Integer budget) {
+    public void setBudget(BigDecimal budget) {
         this.budget = budget;
     }
 
-    @OneToMany
-    public Set<Item> getItemSet() {
-        return itemSet;
-    }
-
-    public void setItemSet(Set<Item> itemSet) {
-        this.itemSet = itemSet;
-    }
 }

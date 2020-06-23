@@ -1,4 +1,4 @@
-package com.svc.exampreparation.Date;
+package com.svc.exampreparation.date;
 
 public enum Gender {
     MALE, FEMALE

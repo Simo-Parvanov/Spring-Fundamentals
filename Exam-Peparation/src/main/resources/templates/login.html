@@ -3,26 +3,7 @@
       xmlns:th="http://www.thymeleaf.org">
 <th:block th:include="~{fragments/head}"/>
 <body>
-   <header>
-      <nav class="navbar bg-dark navbar-expand-lg navbar-background bg-dark ">
-        <a class="nav-link text-white active h5" href="/">Andrey's</a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
-                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse d-flex justify-content-end" id="navbarNav">
-            <ul class="navbar-nav row">
-
-                <li class="nav-item col-md-4">
-                    <a class="nav-link text-white active h6" href="/user/login">Login</a>
-                </li>
-                <li class="nav-item col-md-4">
-                    <a class="nav-link text-white active h6" href="/user/register" >Register</a>
-                </li>
-            </ul>
-        </div>
-    </nav>
-   </header>
+<th:block th:include="~{fragments/header}"/>
     <main >
         <h1 class="text-center mt-2"><span class="badge badge-pill badge-dark" >Login</span></h1>
         <hr class="hr-3"/>

@@ -1,4 +1,4 @@
-package com.svc.exampreparation.Configuration;
+package com.svc.exampreparation.configuration;
 
 import org.modelmapper.ModelMapper;
 import org.springframework.context.annotation.Bean;

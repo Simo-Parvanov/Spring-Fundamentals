@@ -1,29 +1,24 @@
-package com.svc.exampreparation.Date;
+package com.svc.exampreparation.date;
 
 import org.hibernate.validator.constraints.Length;
 
 import javax.persistence.*;
 import javax.validation.constraints.Positive;
-
-
-//        •	Has a Category
-//        o	Has a relation with Categories
-//        •	Has a Gender – an option between (Male and Female)
-
+import java.math.BigDecimal;
 
 @Entity
 @Table(name = "items")
 public class Item extends BaseEntity{
     private String name;
     private String description;
-    private Double price;
+    private BigDecimal price;
     private Category category;
     private Gender gender;
 
     public Item() {
     }
 
-    @Column(name = "name", unique = true)
+    @Column(name = "name", unique = true, nullable = false)
     @Length(min = 2)
     public String getName() {
         return name;
@@ -44,12 +39,11 @@ public class Item extends BaseEntity{
     }
 
     @Column(name = "price")
-    @Positive
-    public Double getPrice() {
+    public BigDecimal getPrice() {
         return price;
     }
 
-    public void setPrice(Double price) {
+    public void setPrice(BigDecimal price) {
         this.price = price;
     }
 
@@ -62,7 +56,7 @@ public class Item extends BaseEntity{
         this.category = category;
     }
 
-    @Column(name = "gender")
+    @Column(name = "gender", nullable = false)
     @Enumerated(EnumType.STRING)
     public Gender getGender() {
         return gender;

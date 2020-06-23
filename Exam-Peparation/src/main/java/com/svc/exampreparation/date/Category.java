@@ -1,4 +1,4 @@
-package com.svc.exampreparation.Date;
+package com.svc.exampreparation.date;
 
 import org.hibernate.validator.constraints.Length;
 
@@ -12,9 +12,14 @@ public class Category extends BaseEntity{
 
     public Category() {
     }
+    public Category(CategoryEnum name, String description) {
+        this.name = name;
+        this.description = description;
+    }
+
 
     @Column(name = "name")
-    @Enumerated(EnumType.STRING)
+    @Enumerated
     public CategoryEnum getName() {
         return name;
     }
@@ -23,7 +28,7 @@ public class Category extends BaseEntity{
         this.name = name;
     }
 
-    @Column(name = "description")
+    @Column(name = "description", columnDefinition = "TEXT")
     @Length(min = 3)
     public String getDescription() {
         return description;

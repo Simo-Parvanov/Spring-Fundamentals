@@ -1,16 +1,14 @@
-package com.svc.exampreparation.Services.Models;
+package com.svc.exampreparation.services.models;
 
-import javax.validation.constraints.Email;
-import javax.validation.constraints.Min;
-import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Positive;
+import javax.validation.constraints.*;
+import java.math.BigDecimal;
 
 public class UserRegisterServiceModel {
     private String username;
     private String password;
     private String confirmPassword;
     private String email;
-    private Integer budget;
+    private BigDecimal budget;
 
     public UserRegisterServiceModel() {
     }
@@ -50,13 +48,13 @@ public class UserRegisterServiceModel {
     public void setEmail(String email) {
         this.email = email;
     }
-    @Positive(message = "Budget must be more or equal to 0!")
+    @DecimalMin(value = "0",message = "Budget must be more or equal to 0!")
     @NotNull
-    public Integer getBudget() {
+    public BigDecimal getBudget() {
         return budget;
     }
 
-    public void setBudget(Integer budget) {
+    public void setBudget(BigDecimal budget) {
         this.budget = budget;
     }
 }

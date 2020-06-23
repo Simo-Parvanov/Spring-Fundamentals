@@ -1,15 +1,14 @@
-package com.svc.exampreparation.Services.Models;
-
+package com.svc.exampreparation.web.models;
 
 import org.hibernate.validator.constraints.Length;
 
 import javax.validation.constraints.NotNull;
 
-public class UserLoginServiceModel {
+public class UserLoginWebModel {
     private String username;
     private String password;
 
-    public UserLoginServiceModel() {
+    public UserLoginWebModel() {
     }
 
     @Length(min = 2, message = "Username must be more than two characters!")

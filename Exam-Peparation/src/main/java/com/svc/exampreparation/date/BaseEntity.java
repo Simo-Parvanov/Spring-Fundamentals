@@ -1,4 +1,4 @@
-package com.svc.exampreparation.Date;
+package com.svc.exampreparation.date;
 
 import org.hibernate.annotations.GenericGenerator;
 

@@ -1,8 +1,9 @@
-package com.svc.exampreparation.Web;
+package com.svc.exampreparation.web;
 
-import com.svc.exampreparation.Services.Models.UserLoginServiceModel;
-import com.svc.exampreparation.Services.Models.UserRegisterServiceModel;
-import com.svc.exampreparation.Services.UserService;
+import com.svc.exampreparation.services.models.UserLoginServiceModel;
+import com.svc.exampreparation.services.models.UserRegisterServiceModel;
+import com.svc.exampreparation.services.UserService;
+import com.svc.exampreparation.web.models.UserRegisterWebModel;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -57,7 +58,31 @@ public class AuthController {
 
     @GetMapping("/register")
     public String getRegister(Model model){
-        model.addAttribute("user", new UserRegisterServiceModel());
+        if (!model.containsAttribute("user")){
+            model.addAttribute("user", new UserRegisterWebModel());
+        }
         return "register";
+    }
+    @PostMapping("/register")
+    public String postRegister(@Valid @ModelAttribute("user") UserRegisterWebModel user,
+                               RedirectAttributes redirectAttributes,
+                               BindingResult binding){
+        if (binding.hasErrors()){
+            user.setPassword(null);
+            user.setConfirmPassword(null);
+            redirectAttributes.addFlashAttribute("user", user);
+            redirectAttributes.addFlashAttribute("org.springframework.validation.BindingResult.user", binding);
+            return "redirect:/user/register";
+        }
+        try {
+            userService.register(user);
+            return "login";
+        }catch (Exception ex){
+            user.setPassword(null);
+            user.setConfirmPassword(null);
+            redirectAttributes.addFlashAttribute("user", user);
+            redirectAttributes.addFlashAttribute("error", ex.getMessage());
+            return "redirect:/user/register";
+        }
     }
 }

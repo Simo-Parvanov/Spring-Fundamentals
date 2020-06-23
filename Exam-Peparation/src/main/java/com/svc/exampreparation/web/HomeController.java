@@ -1,4 +1,4 @@
-package com.svc.exampreparation.Web;
+package com.svc.exampreparation.web;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
