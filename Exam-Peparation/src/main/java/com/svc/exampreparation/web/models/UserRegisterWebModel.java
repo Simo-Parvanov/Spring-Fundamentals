@@ -5,6 +5,7 @@ import org.hibernate.validator.constraints.Length;
 import javax.validation.constraints.DecimalMin;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 import java.math.BigDecimal;
 
 public class UserRegisterWebModel {
@@ -17,7 +18,7 @@ public class UserRegisterWebModel {
     public UserRegisterWebModel() {
     }
 
-    @Length(min = 2, message = "Username must by more then tow characters!")
+    @Size(min = 2, message = "Username must by more then tow characters!")
     @NotNull
     public String getUsername() {
         return username;
@@ -27,7 +28,7 @@ public class UserRegisterWebModel {
         this.username = username;
     }
 
-    @Length(min = 2, message = "Password must by more then tow characters!")
+    @Size(min = 2, message = "Password must by more then tow characters!")
     @NotNull
     public String getPassword() {
         return password;

@@ -7,7 +7,7 @@
 <main>
     <h1 class="text-center mt-2"><span class="badge badge-pill badge-dark">Add Item</span></h1>
     <hr class="hr-3"/>
-    <form class="mx-auto w-25 bg-dark p-3 rounded text-center" action="/" method="">
+    <form th:object="${item}" class="mx-auto w-25 bg-dark p-3 rounded text-center" action="/item/add" method="POST">
         <div class="form-group">
             <div class="text-white label-holder d-flex justify-content-center">
                 <label for="name" class="h4 mb-2">Name</label>
@@ -28,10 +28,8 @@
             </div>
             <select class="browser-default custom-select" id="category" name="category">
                 <option value="">Select category</option>
-                <option value="SHIRT">Shirt</option>
-                <option value="DENIM">Denim</option>
-                <option value="SHORTS">Shorts</option>
-                <option value="JACKET">Jacket</option>
+                <option th:each="cat : ${T(com.svc.exampreparation.date.CategoryEnum).values()}" th:value="${cat}"
+                th:text="${#strings.capitalize(#strings.toLowerCase(cat))}">Select category</option>
             </select>
         </div>
         <div class="form-group">
@@ -40,8 +38,8 @@
             </div>
             <select class="browser-default custom-select" id="gender" name="gender" >
                 <option value="">Select gender</option>
-                <option value="MALE">Male</option>
-                <option value="FEMALE">Female</option>
+                <option th:each="gen : ${T(com.svc.exampreparation.date.Gender).values()}" th:value="${gen}"
+                        th:text="${#strings.capitalize(#strings.toLowerCase(gen))}">Male</option>
             </select>
         </div>
         <div class="form-group">

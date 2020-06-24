@@ -28,4 +28,9 @@ public class CategoryServiceImpl implements CategoryService {
             });
         }
     }
+
+//    @Override
+//    public Category findCategoryByName(String name) {
+//        return categoryRepository.findByName_DeclaringClass(name);
+//    }
 }

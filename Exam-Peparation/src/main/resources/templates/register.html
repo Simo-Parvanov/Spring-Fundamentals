@@ -8,6 +8,7 @@
     <h1 class="text-center mt-2"><span class="badge badge-pill badge-dark">Register</span></h1>
     <hr class="hr-3"/>
     <form th:object="${user}" class="mx-auto mb-5 text-center w-25 bg-dark p-3 rounded" action="/user/register" method="POST">
+        <h6 th:if="${error}" th:text="${error}" class="text-center bg-dark text-danger"></h6>
         <div class="form-group">
             <div class="label-holder textCol d-flex justify-content-center">
                 <label for="username" class="h4 mb-2 text-white">Username</label>
