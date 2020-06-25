@@ -18,8 +18,7 @@ public class UserRegisterWebModel {
     public UserRegisterWebModel() {
     }
 
-    @Size(min = 2, message = "Username must by more then tow characters!")
-    @NotNull
+    @Length(min = 2, message = "Username must by more then tow characters!")
     public String getUsername() {
         return username;
     }
@@ -28,8 +27,7 @@ public class UserRegisterWebModel {
         this.username = username;
     }
 
-    @Size(min = 2, message = "Password must by more then tow characters!")
-    @NotNull
+    @Length(min = 2, message = "Password must by more then tow characters!")
     public String getPassword() {
         return password;
     }
@@ -37,7 +35,7 @@ public class UserRegisterWebModel {
     public void setPassword(String password) {
         this.password = password;
     }
-    @NotNull(message = "Please repeat the password")
+//    @NotNull(message = "Please repeat the password")
     public String getConfirmPassword() {
         return confirmPassword;
     }
@@ -55,7 +53,6 @@ public class UserRegisterWebModel {
         this.email = email;
     }
     @DecimalMin(value = "0",message = "Budget must be more or equal to 0!")
-    @NotNull
     public BigDecimal getBudget() {
         return budget;
     }

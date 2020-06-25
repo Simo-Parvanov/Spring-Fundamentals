@@ -15,7 +15,7 @@ public class ItemCreateWebModel {
     private String description;
     private BigDecimal price;
     private CategoryEnum category;
-    private Gender gender;
+    private String gender;
 
     public ItemCreateWebModel() {
     }
@@ -39,7 +39,7 @@ public class ItemCreateWebModel {
         this.description = description;
     }
     @NotNull(message = "Incorrect price!")
-    @DecimalMin(value = "0.0", message = "Please enter a positive amount!")
+    @DecimalMin(value = "0", message = "Please enter a positive amount!")
     public BigDecimal getPrice() {
         return price;
     }
@@ -56,11 +56,11 @@ public class ItemCreateWebModel {
         this.category = category;
     }
 
-    public Gender getGender() {
+    public String getGender() {
         return gender;
     }
 
-    public void setGender(Gender gender) {
+    public void setGender(String gender) {
         this.gender = gender;
     }
 }

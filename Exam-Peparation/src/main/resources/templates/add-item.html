@@ -29,7 +29,7 @@
             <select class="browser-default custom-select" id="category" name="category">
                 <option value="">Select category</option>
                 <option th:each="cat : ${T(com.svc.exampreparation.date.CategoryEnum).values()}" th:value="${cat}"
-                th:text="${#strings.capitalize(#strings.toLowerCase(cat))}">Select category</option>
+                th:text="${cat}"></option>
             </select>
         </div>
         <div class="form-group">

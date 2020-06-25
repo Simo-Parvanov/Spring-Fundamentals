@@ -19,7 +19,7 @@ public class Category extends BaseEntity{
 
 
     @Column(name = "name")
-    @Enumerated
+    @Enumerated(EnumType.STRING)
     public CategoryEnum getName() {
         return name;
     }

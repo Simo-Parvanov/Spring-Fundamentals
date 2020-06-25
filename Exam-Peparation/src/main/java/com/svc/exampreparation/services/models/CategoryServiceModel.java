@@ -3,6 +3,7 @@ package com.svc.exampreparation.services.models;
 import com.svc.exampreparation.date.CategoryEnum;
 
 public class CategoryServiceModel {
+    private String id;
     private CategoryEnum name;
     private String description;
 
@@ -23,5 +24,13 @@ public class CategoryServiceModel {
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
     }
 }

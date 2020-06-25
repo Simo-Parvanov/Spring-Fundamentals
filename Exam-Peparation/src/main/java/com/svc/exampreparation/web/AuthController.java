@@ -1,8 +1,7 @@
 package com.svc.exampreparation.web;
 
-import com.svc.exampreparation.services.models.UserLoginServiceModel;
-import com.svc.exampreparation.services.models.UserRegisterServiceModel;
 import com.svc.exampreparation.services.UserService;
+import com.svc.exampreparation.services.models.UserLoginServiceModel;
 import com.svc.exampreparation.web.models.UserRegisterWebModel;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -47,7 +46,7 @@ public class AuthController {
         try {
             userService.userLogin(user);
             session.setAttribute("username", user.getUsername());
-            return "home";
+            return "redirect:/";
         } catch (Exception ex) {
             user.setPassword(null);
             redirectAttributes.addFlashAttribute("user", user);
@@ -65,8 +64,10 @@ public class AuthController {
     }
     @PostMapping("/register")
     public String postRegister(@Valid @ModelAttribute("user") UserRegisterWebModel user,
-                               RedirectAttributes redirectAttributes,
-                               BindingResult binding){
+                               BindingResult binding,
+                               RedirectAttributes redirectAttributes
+                               ){
+        System.out.println();
         if (binding.hasErrors()){
             user.setPassword(null);
             user.setConfirmPassword(null);
