@@ -6,4 +6,7 @@ import java.util.List;
 
 public interface ProductService {
     List<ProductViewModel> allProduct();
+
+    void createItem(ProductViewModel product);
+
 }

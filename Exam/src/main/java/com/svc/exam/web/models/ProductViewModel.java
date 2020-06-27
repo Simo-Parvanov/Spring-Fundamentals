@@ -2,10 +2,9 @@ package com.svc.exam.web.models;
 
 import com.svc.exam.data.models.CategoryEnum;
 import org.hibernate.validator.constraints.Length;
+import org.springframework.format.annotation.DateTimeFormat;
 
-import javax.validation.constraints.DecimalMin;
-import javax.validation.constraints.NotNull;
-import javax.validation.constraints.PastOrPresent;
+import javax.validation.constraints.*;
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 
@@ -13,7 +12,7 @@ public class ProductViewModel {
     private String name;
     private String description;
     private BigDecimal price;
-    private LocalDateTime localDateTime;
+    private LocalDateTime neededBefore;
     private CategoryEnum category;
 
     public ProductViewModel() {
@@ -29,7 +28,7 @@ public class ProductViewModel {
         this.name = name;
     }
 
-    @Length(min = 5, message = "Description min length must be minimum 5(inclusive) characters!")
+    @Length(min = 5, message = "Description min length must be minimum 5 characters!")
     @NotNull
     public String getDescription() {
         return description;
@@ -48,14 +47,14 @@ public class ProductViewModel {
         this.price = price;
     }
 
-    @NotNull
-    @PastOrPresent(message = "Date and Time, that cannot be in the past!")
+    @DateTimeFormat(pattern = "yyyy-MM-dd'T'HH:mm")
+    @FutureOrPresent(message = "Date and Time, that cannot be in the past!")
     public LocalDateTime getLocalDateTime() {
-        return localDateTime;
+        return neededBefore;
     }
 
     public void setLocalDateTime(LocalDateTime localDateTime) {
-        this.localDateTime = localDateTime;
+        this.neededBefore = localDateTime;
     }
 
     @NotNull

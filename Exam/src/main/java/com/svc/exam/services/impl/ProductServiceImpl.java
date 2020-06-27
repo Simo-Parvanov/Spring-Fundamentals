@@ -28,4 +28,9 @@ public class ProductServiceImpl implements ProductService {
                 .collect(Collectors.toList());
         return model.stream().map(prod -> mapper.map(prod, ProductViewModel.class)).collect(Collectors.toList());
     }
+
+    @Override
+    public void createItem(ProductViewModel product) {
+
+    }
 }
